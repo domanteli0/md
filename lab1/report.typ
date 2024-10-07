@@ -76,8 +76,6 @@ Ativaizdu, kad čia tie patys sprendimai.
 = Užduotis \#2
 
 $ 
-  eq.triple \
-
   x y′ &= 2y + x^2/y \
   
   y′ &= 2y/x + x/(y) ,#h(1em) x != 0 \
@@ -129,6 +127,11 @@ $
 $
 
 Ativaizdu, kad tai tie patys sprendimai.
+
+#figure(
+  image("1.png", width: 65%),
+  caption: [Lygties $y′ &= 2y + x^2/y$ integralinės kreivės]
+)
 
 
 #pagebreak()
@@ -334,7 +337,7 @@ y = Function('y')
 eq = Eq(
     x**2 * Derivative(y(x), x) + x * y(x) + 1,
     0
-  )
+    )
 
 solution = dsolve(eq)
 display(solution)
@@ -347,8 +350,10 @@ sol = solution
 
 sol = sol.subs('C1', sm.log(2) + 2)
 sol1 = lambdify(x, sol.rhs)
+eq = (sol.rhs)
+x_limit = float(solve(Eq(sol.rhs, 10))[0]) 
 
-x_vals = np.linspace(0.1, 5, 100)
+x_vals = np.linspace(x_limit, 5, 100)
 y_vals1 = sol1(x_vals)
 
 plt.figure(figsize=(6, 6))
