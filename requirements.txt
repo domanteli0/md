@@ -6,3 +6,4 @@ sympy
 networkx
 pipe
 pygments
+mpmath
