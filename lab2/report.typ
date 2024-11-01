@@ -1,5 +1,7 @@
 #import "@preview/mitex:0.2.4": *
 
+#import "@preview/codly:1.0.0": codly-init
+
 #let pageref(label) = context {
   let loc = locate(label)
   let nums = counter(page).at(loc)
@@ -8,14 +10,6 @@
 
 #set figure(
   supplement: [Fig.]
-)
-
-#show raw.where(block: true): it => box(
-  fill: rgb("#3b1e1e"),
-  outset: 3pt,
-  radius: 2pt,
-  width: 100%,
-  it
 )
 
 #align(center, text(18pt)[
@@ -45,15 +39,15 @@
 //  first-order, nonlinear ordinary differential equation
 1. Išspręsi paprastąją pirmos eilės, netiesinę diferencialinę lygtį $(d u)/(d x) = x^2 ln(u+x) - x$, su Koši sąlyga $u(0) = u_0$ intervale 0 ≤ x ≤ 1, taikant:
 
-  a. 4-pakopi Rungės Kuto metodą ir
+  a. 4-pakopi Rungės-Kuto metodą ir
 
-  b. dvipakopi Rungės Kuto (#math.sigma = 0.5).
+  b. dvipakopi Rungės-Kuto (#math.sigma = 0.5).
 
-  Su pradiniu tašku $u_0 = 1$, žingsniais 0.1 ir 0.05.
+  Su pradiniu tašku $u_0 = 1$, žingsniais ($tau$) 0.1 ir 0.05.
 
 2. Įvertinti paklaidą, intervale $(0, 1]$, Rungės metodu. 
 
-== Rungė-Koto 4-kopis metodas
+== Rungės-Kuto 4-kopis metodas
 
 #v(0.45em)
 
@@ -66,7 +60,7 @@
 `)
 
 
-== Rungė-Koto 2-kopis metodas
+== Rungės-Kuto 2-kopis metodas
 
 #v(0.45em)
 
@@ -117,6 +111,8 @@ Paklaida įvertinta Rungės metodu $display(|u(T) - y_τ|≈ (|y_(2τ) - y_τ|)/
 
 Naudojami įtraukimai:
 
+#show: codly-init.with()
+
 ```py
 import numpy as np
 import matplotlib.pyplot as plt
@@ -163,6 +159,7 @@ def RungeKutta2(fn, u0 = 1, lower_bound = 0, upper_bound = 1, tau = 0.1):
   return ts, y
 ```
 
+#pagebreak()
 Sprendimas naudojant `ScyPy`:
 
 ```py
@@ -172,7 +169,6 @@ def SciPy(fn, u0 = 1, lower_bound = 0, upper_bound = 1, tau = 0.1):
   return ts, sol['y'][0]
 ```
 
-#pagebreak()
 == Vizualizacijos
 
 ```py
@@ -208,6 +204,7 @@ plt.savefig('rk2.png', dpi=300)
 plt.show()
 ```
 
+#pagebreak()
 == Paklaidos skaičiavimas ir vizualizacija
 
 ```py
