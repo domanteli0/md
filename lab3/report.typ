@@ -17,7 +17,7 @@
 #align(center, text(15pt)[
   Domantas Keturakis \
   #text(13pt)[
-    Spalis 2024
+    Lapkritis 2024
   ]
   ]
  )
